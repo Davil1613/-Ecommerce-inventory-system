@@ -28,7 +28,15 @@ Este projeto visa **simplificar e automatizar o controle de inventário**, permi
 - **Armazenamento de Dados**:
     - **Microsoft Excel** (`.xlsx`): Para persistência dos dados de estoque e transações.
 
----
+## ⚙️ Comandos de Execução
+```
+npm run back               # Para executar o BACKEND
+npm run front              # Para executar o FRONTEND
+npm run dev                # Para executar o FRONTEND e BACKEND
+```
+
+## ⚙️ link HML backend
+ip:8000/docs#/
 
 ## 📂 Estrutura Básica do Projeto
 
@@ -55,3 +63,5 @@ backend_estoque/
 │
 ├── estoque.xlsx            # Arquivo de dados do estoque
 └── requirements.txt        # Dependências Python
+
+
