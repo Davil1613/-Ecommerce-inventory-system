@@ -1,0 +1,17 @@
+{
+  "name": "ecommerce_inventory_system",
+  "version": "1.0.0",
+  "description": "Sistema para gerenciamento de estoque desenvolvido com **Python (FastAPI)** para o backend e **Next.js** para o frontend. Focado em automatizar o registro de entradas e saídas de produtos, com armazenamento persistente em arquivos Excel e visualização de dados através de gráficos interativos.",
+  "main": "index.js",
+  "scripts": {
+    "back": "cd backend_estoque && venv\\Scripts\\python.exe -m uvicorn app.main:app --reload --port 8000",
+    "front": "cd frontend_estoque && npm run dev",
+    "dev": "concurrently \"npm run back\" \"npm run front\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

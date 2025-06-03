@@ -1,37 +1,29 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List
-from datetime import datetime
+from datetime import datetime, date
 
 class ProductBase(BaseModel):
     NomeProduto: str
-    TipoProduto: str
     ValorUnitario: float = Field(gt=0)
-class ProductCreate(ProductBase):
-    Quantidade: int = Field(gt=0)
-    DataRecebimento: datetime = Field(default_factory=datetime.now)
 
 class ProductStock(ProductBase):
-    ID_Produto: str
+    ID_Produto: int
     Quantidade: int
-    DataUltimaAtualizacao: datetime
+    DataUltimaAtualizacao: date
 
 class StockMovement(BaseModel):
-    ID_Produto: Optional[str] = None
     NomeProduto: str
-    TipoProduto: str
     Quantidade: int = Field(gt=0)
     ValorUnitario: Optional[float] = None 
-    DataMovimentacao: datetime = Field(default_factory=datetime.now)
+    DataMovimentacao: date = Field(default_factory=date.today)
 
 class TransactionRecord(BaseModel):
     ID_Transacao: int
-    DataHora: datetime
-    ID_Produto: str
+    DataHora: date
+    ID_Produto: int
     NomeProduto: str
-    TipoProduto: str
     TipoMovimentacao: str
     Quantidade: int
-    ValorUnitarioMovimentacao: float
     ValorTotalMovimentacao: float
 
 class StockResponse(BaseModel):

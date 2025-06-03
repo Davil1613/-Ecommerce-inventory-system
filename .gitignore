@@ -1,5 +1,9 @@
 # Ambiente Virtual Python (Backend)
+package-lock.json
+node_modules/
 backend_estoque/venv/
 backend_estoque/__pycache__/
 backend_estoque/*.pyc
 backend_estoque/.env
+packege-lock.json/
+__pycache__/

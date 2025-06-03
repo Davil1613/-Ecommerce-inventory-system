@@ -54,15 +54,13 @@ async def listar_estoque_atual():
 
 @router.get("/transacoes", response_model=StockResponse)
 async def listar_historico_transacoes(
-    data_inicio: Optional[datetime] = Query(None, description="Data de início do filtro (YYYY-MM-DDTHH:MM:SS)"),
-    data_fim: Optional[datetime] = Query(None, description="Data de fim do filtro (YYYY-MM-DDTHH:MM:SS)"),
-    tipo_produto: Optional[str] = Query(None, description="Filtrar por tipo de produto")
+    data_inicio: Optional[datetime] = Query(None, description="Data de início do filtro (YYYY-MM-DD)"),
+    data_fim: Optional[datetime] = Query(None, description="Data de fim do filtro (YYYY-MM-DD)"),
 ):
     try:
         transactions = inventory_service.get_transaction_history(
             start_date=data_inicio,
             end_date=data_fim,
-            product_type=tipo_produto
         )
         return StockResponse(message="Histórico de transações recuperado com sucesso.", data=transactions)
     except Exception as e:
