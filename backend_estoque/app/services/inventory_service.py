@@ -2,13 +2,9 @@ from datetime import datetime
 from typing import List, Optional
 from app.models import schemas
 import pandas as pd
-from app.core.config import (EXCEL_FILE_PATH, STOCK_SHEET_NAME,
-                             TRANSACTIONS_SHEET_NAME, STOCK_COLUMNS)
-from app.core.excel_handler import (append_to_sheet,
-                                    get_next_transaction_id, read_sheet,
-                                    write_df_to_excel)
-from app.models.schemas import (ProductStock, StockMovement,
-                                TransactionRecord)
+from app.core.config import (EXCEL_FILE_PATH, STOCK_SHEET_NAME, TRANSACTIONS_SHEET_NAME, STOCK_COLUMNS)
+from app.core.excel_handler import (append_to_sheet, get_next_transaction_id, read_sheet, write_df_to_excel)
+from app.models.schemas import (ProductStock, StockMovement, TransactionRecord)
 
 
 def add_product_entry(movement: schemas.StockMovement) -> schemas.ProductStock:
@@ -47,7 +43,7 @@ def add_product_entry(movement: schemas.StockMovement) -> schemas.ProductStock:
         else:
             # Se não fornecido, usa o valor unitário existente para a transação
             valor_unitario_transacao = df_stock.loc[idx, 'ValorUnitario']
-        
+        df_stock.loc[idx, 'ValorTotal'] = df_stock.loc[idx, 'Quantidade'] * df_stock.loc[idx, 'ValorUnitario']
         df_stock.loc[idx, 'DataUltimaAtualizacao'] = movement.DataMovimentacao
     else:
         # Produto novo: Atribui novo ID_Produto sequencial
@@ -67,7 +63,8 @@ def add_product_entry(movement: schemas.StockMovement) -> schemas.ProductStock:
             "NomeProduto": nome_produto_req,
             "ValorUnitario": movement.ValorUnitario,
             "Quantidade": movement.Quantidade,
-            "DataUltimaAtualizacao": movement.DataMovimentacao
+            "DataUltimaAtualizacao": movement.DataMovimentacao,
+            # "ValorTotal": movement.Quantidade * movement.ValorUnitario
         }
         # Garante que o novo DataFrame tenha as colunas corretas antes de concatenar
         new_stock_df = pd.DataFrame([new_stock_item])
@@ -135,6 +132,7 @@ def remove_product_stock(movement: schemas.StockMovement) -> schemas.ProductStoc
 
     df_stock.loc[idx, 'Quantidade'] -= movement.Quantidade
     df_stock.loc[idx, 'DataUltimaAtualizacao'] = movement.DataMovimentacao
+    df_stock.loc[idx, 'ValorTotal'] = df_stock.loc[idx, 'Quantidade'] * df_stock.loc[idx, 'ValorUnitario']
     
     df_stock['ID_Produto'] = df_stock['ID_Produto'].astype(int) # Garante tipo antes de salvar
     write_df_to_excel(df_stock, STOCK_SHEET_NAME)

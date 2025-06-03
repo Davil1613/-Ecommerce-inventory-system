@@ -12,5 +12,5 @@ STOCK_SHEET_NAME = "EstoqueAtual"
 TRANSACTIONS_SHEET_NAME = "HistoricoTransacoes"
 
 # Colunas esperadas
-STOCK_COLUMNS = ["ID_Produto", "NomeProduto", "ValorUnitario", "Quantidade", "DataUltimaAtualizacao"]
+STOCK_COLUMNS = ["ID_Produto", "NomeProduto", "ValorUnitario", "Quantidade", "DataUltimaAtualizacao", "ValorTotal"]
 TRANSACTION_COLUMNS = ["ID_Transacao", "DataHora", "ID_Produto", "NomeProduto", "TipoMovimentacao", "Quantidade", "ValorTotalMovimentacao"]

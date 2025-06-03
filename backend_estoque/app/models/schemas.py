@@ -10,6 +10,7 @@ class ProductStock(ProductBase):
     ID_Produto: int
     Quantidade: int
     DataUltimaAtualizacao: date
+    ValorTotal: Optional[float] = None 
 
 class StockMovement(BaseModel):
     NomeProduto: str
