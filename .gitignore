@@ -1,0 +1,5 @@
+# Ambiente Virtual Python (Backend)
+backend_estoque/venv/
+backend_estoque/__pycache__/
+backend_estoque/*.pyc
+backend_estoque/.env

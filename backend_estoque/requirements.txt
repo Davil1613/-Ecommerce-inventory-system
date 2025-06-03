@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]  # Servidor ASGI para rodar o FastAPI
+pandas
+openpyxl          
+pydantic           # Para validação de dados e modelos
+python-dotenv      # Para carregar variáveis de ambiente
