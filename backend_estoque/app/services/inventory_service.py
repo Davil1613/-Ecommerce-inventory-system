@@ -64,7 +64,7 @@ def add_product_entry(movement: schemas.StockMovement) -> schemas.ProductStock:
             "ValorUnitario": movement.ValorUnitario,
             "Quantidade": movement.Quantidade,
             "DataUltimaAtualizacao": movement.DataMovimentacao,
-            # "ValorTotal": movement.Quantidade * movement.ValorUnitario
+            "ValorTotal": movement.Quantidade * movement.ValorUnitario
         }
         # Garante que o novo DataFrame tenha as colunas corretas antes de concatenar
         new_stock_df = pd.DataFrame([new_stock_item])
